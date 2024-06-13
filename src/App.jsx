@@ -1,14 +1,4 @@
 import { useState } from 'react'
-// import backfly from '/acro-poses/backfly.png'
-// import bicepStand from '/acro-poses/bicepStand.png'
-// import bird from '/acro-poses/bird.png'
-// import boxBalance from '/acro-poses/boxBalance.png'
-// import footToHand from '/acro-poses/footToHand.png'
-// import shinToFoot from '/acro-poses/shinToFoot.png'
-// import sholderToShoulder from '/acro-poses/sholderToShoulder.png'
-// import stradleBalance from '/acro-poses/stradleBalance.png'
-
-
 
 function App() {
   const moveList = [
@@ -22,15 +12,20 @@ function App() {
     '/acro-poses/stradleBalance.png',
   ]
   const [theMove, setTheMove] = useState("/acro-poses/starter.png") 
-  
+  const [track, setTrack] = useState(null);
+  const rendonNum = () => Math.floor(Math.random() * moveList.length)
   const randomPick = () => {
      
-    let index =  Math.floor(Math.random() * moveList.length)
-    let lastIdx = index;
-    if (lastIdx == index)
-    setTheMove(moveList[index]);
+    let index = rendonNum();
 
-  }  
+    if (track !== index) {
+      setTheMove(moveList[index])
+      setTrack(index)
+    } else {
+      randomPick();
+    }
+  } 
+
   return (
     <div className="font-roboto">
      <h1>Acro Move</h1>  
